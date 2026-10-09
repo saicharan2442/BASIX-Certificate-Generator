@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Poppins", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --color-navy-50: #f0f3f9;
+  --color-navy-100: #dfe5f0;
+  --color-navy-150: #cdd6e7;
+  --color-navy-200: #b9c4da;
+  --color-navy-300: #94a4c4;
+  --color-navy-400: #6b80ac;
+  --color-navy-500: #4b5f8c;
+  --color-navy-600: #354873;
+  --color-navy-700: #1e3463;
+  --color-navy-800: #152a52;
+  --color-navy-900: #0d1e42;
+  --color-navy-950: #08132c;
+
+  /* Theme accent: sky blue #2db8ff (named "gold" so every existing
+     gold-* class picks the new palette up automatically). */
+  --color-gold-50: #eaf7ff;
+  --color-gold-100: #d4edff;
+  --color-gold-200: #aeddff;
+  --color-gold-300: #7dccff;
+  --color-gold-400: #47bfff;
+  --color-gold-500: #2db8ff;
+  --color-gold-600: #0c9de6;
+  --color-gold-700: #0b7cbc;
+  --color-gold-800: #106495;
+  --color-gold-900: #12537b;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  background-color: #eef1f7;
+}
+
+::selection {
+  background: rgba(45, 184, 255, 0.35);
+}
+
+/* ---- scrollbars --------------------------------------------------------- */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #b9c4da transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: #c2cddd;
+  border-radius: 8px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: #9dadc9;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ---- animations ---------------------------------------------------------- */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fade-in 0.28s ease-out both;
+}
+
+@keyframes pop-in {
+  from { opacity: 0; transform: scale(0.97) translateY(6px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.animate-pop-in {
+  animation: pop-in 0.22s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateX(24px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.animate-toast-in {
+  animation: toast-in 0.24s cubic-bezier(0.2, 0.9, 0.3, 1.1) both;
+}
+
+/* sky sheen sweeping over the progress bar while a batch runs */
+@keyframes sheen {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+.progress-sheen {
+  background-image: linear-gradient(
+    100deg,
+    #0c9de6 0%, #2db8ff 20%, #aeddff 40%, #2db8ff 60%, #47bfff 80%, #0c9de6 100%
+  );
+  background-size: 200% 100%;
+  animation: sheen 1.6s linear infinite;
+}
+
+/* number inputs: keep spinners subtle */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  opacity: 0.4;
+}
+
+/* range slider */
+input[type="range"] {
+  cursor: pointer;
+}
+
+/* details/summary smoothness */
+details summary::-webkit-details-marker {
+  display: none;
+}
